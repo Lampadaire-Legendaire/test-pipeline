@@ -1,9 +1,12 @@
 pipeline {
     agent any
+    tools{
+        nodejs 'NodeJS 20'
+    }
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/Lampadaire-Legendaire/test-pipeline', branch: 'main'
+                git url: 'https://github.com/utilisateur/mon-repo.git', branch: 'main'
             }
         }
         stage('Build') {
@@ -18,7 +21,6 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Déploiement en cours...'
                 sh 'npx next dev'
             }
         }
